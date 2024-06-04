@@ -1,14 +1,13 @@
 import React from 'react';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@components/theme/theme';
 
 import { Router } from './src/screens/Router';
+import { ThemeProvider } from '@components/theme/Provider';
 
 function App(): React.JSX.Element {
   return (
-    <GluestackUIProvider config={config}>
+    <ThemeProvider>
       <Router />
-    </GluestackUIProvider>
+    </ThemeProvider>
   );
 }
 
