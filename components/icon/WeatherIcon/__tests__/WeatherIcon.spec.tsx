@@ -1,5 +1,5 @@
 import React from 'react';
-import { WeatherIcon } from '../../WeatherIcon';
+import { WeatherIcon } from '../WeatherIcon';
 
 import { render } from '@testing-library/react-native';
 
