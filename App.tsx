@@ -1,14 +1,13 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@components/theme/theme';
+
+import { Router } from './src/screens/Router';
 
 function App(): React.JSX.Element {
   return (
     <GluestackUIProvider config={config}>
-      <NavigationContainer>
-        <Text>Test</Text>
-      </NavigationContainer>
+      <Router />
     </GluestackUIProvider>
   );
 }
