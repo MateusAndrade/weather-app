@@ -9,13 +9,13 @@ const axiosClient = axios.create({
     baseURL: BASE_URL
 })
 
-const request = <T>(options: AxiosRequestConfig<T>) => {
+const request = <T, R>(options: AxiosRequestConfig<T>) => {
     const params = {
         ...options.params,
         key: API_KEY,
     }
 
-    return axiosClient({ ...options, params }).then((response) => response.data)
+    return axiosClient<R>({ ...options, params }).then((response) => response.data)
 }
 
 
