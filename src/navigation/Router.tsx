@@ -4,8 +4,8 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { City } from './City/City';
-import { Home } from './Home/Home';
+import { City } from '../screens/City/City';
+import { Home } from '../screens/Home/Home';
 
 import { Routes } from './routes';
 
@@ -25,7 +25,11 @@ const Router = () => (
           headerTitleAlign: 'center',
         })}
       />
-      <Stack.Screen name={Routes.City} component={City} />
+      <Stack.Screen
+        name={Routes.City}
+        component={City}
+        options={({ route }) => ({ title: route?.params?.location?.name })}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );
