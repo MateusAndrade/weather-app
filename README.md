@@ -54,4 +54,7 @@ I decided to use React-Query to handle the data fetching, as it's a library I'm 
 
 Something I'm missing and I believe would be a great addition, is to support the user locale to show the temperate according to it. As of today, it's always showing in Celcius(sorry if you are testing from the 🇺🇸). I also think it would be much better to use a shimmer or something similar instead of a AcitivityIndicatior while we load the city page.
 
+![Demo](https://github.com/MateusAndrade/weather-app/blob/main/demo/Demo%20Android.gif)
+
+
 ![Demo](https://raw.githubusercontent.com/username/repo/branch/path_to_video.gif)
