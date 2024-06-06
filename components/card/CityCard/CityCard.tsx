@@ -36,7 +36,7 @@ const CityCard = ({ weather, location }: CityCardProps) => {
         </Heading>
         <Box alignItems="center" flexDirection="row">
           <Box mr="$3">
-            <WeatherIcon condition={weather.condition} size="s" />
+            <WeatherIcon icon={weather.condition.icon} size="s" />
           </Box>
           <Box alignItems="center" flexDirection="column">
             <Text bold size="lg">
