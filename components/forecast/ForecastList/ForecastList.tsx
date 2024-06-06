@@ -4,17 +4,21 @@ import { SmallForecast } from '../SmallForecast/SmallForecast';
 import { Forecastday } from '../../../src/api/types';
 import { Card } from '@gluestack-ui/themed';
 
+import { getForecastsFromTime } from '../../../src/utils';
+
 interface ForecastListProps {
   dailyForecasts: Forecastday[];
 }
 
 const ForecastList = ({ dailyForecasts }: ForecastListProps) => {
-  const dailyForecast = dailyForecasts[0];
+  const currentTime = new Date().getHours();
+
+  const hours = getForecastsFromTime(currentTime, dailyForecasts);
 
   return (
     <Card>
       <FlatList
-        data={dailyForecast.hour}
+        data={hours}
         renderItem={({ item: forecast }) => (
           <SmallForecast forecast={forecast} />
         )}
