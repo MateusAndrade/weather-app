@@ -1,4 +1,4 @@
-import { Location, Weather } from "../types";
+import { Current, Location, Day } from "../../../../src/api/types";
 
 export const location: Location = {
     name: 'Hamburg',
@@ -11,7 +11,7 @@ export const location: Location = {
     localtime: ''
 };
 
-export const weather: Weather = {
+export const weather: Current = {
     last_updated_epoch: 0,
     last_updated: '',
     temp_c: 30,
@@ -45,4 +45,31 @@ export const weather: Weather = {
     uv: 0,
     gust_mph: 0,
     gust_kph: 0
+}
+
+export const daily: Day = {
+    "maxtemp_c": 16.8,
+    "maxtemp_f": 62.3,
+    "mintemp_c": 9.5,
+    "mintemp_f": 49.1,
+    "avgtemp_c": 13.4,
+    "avgtemp_f": 56.0,
+    "maxwind_mph": 8.7,
+    "maxwind_kph": 14.0,
+    "totalprecip_mm": 0.44,
+    "totalprecip_in": 0.02,
+    "totalsnow_cm": 0.0,
+    "avgvis_km": 10.0,
+    "avgvis_miles": 6.0,
+    "avghumidity": 61,
+    "daily_will_it_rain": 1,
+    "daily_chance_of_rain": 88,
+    "daily_will_it_snow": 0,
+    "daily_chance_of_snow": 0,
+    "condition": {
+        "text": "Patchy rain nearby",
+        "icon": "//cdn.weatherapi.com/weather/64x64/day/176.png",
+        "code": 1063
+    },
+    "uv": 5.0
 }

@@ -4,51 +4,57 @@ import { Box, Card, Heading, Text } from '@gluestack-ui/themed';
 
 import { WeatherIcon } from '../../icon/WeatherIcon/WeatherIcon';
 
-import { Location, Weather } from './types';
-import { Pressable } from 'react-native';
+import { formatTemperature } from '../../../src/utils';
+import { Day, Current, Location } from '../../../src/api/types';
 
 export interface CityCardProps {
   location: Location;
-  weather: Weather;
+  currentWeather: Current;
+  dailyWeather: Day;
 }
 
-const CityCard = ({ weather, location }: CityCardProps) => {
-  // @todo: add locale to check for temperature unit in celcius or fahrenheit
-  const currentTemp = `${weather.temp_c}°`;
-  const realFeel = `${weather.feelslike_c}°`;
+const CityCard = ({
+  currentWeather,
+  dailyWeather,
+  location,
+}: CityCardProps) => {
+  const currentTemp = formatTemperature(currentWeather.feelslike_c);
 
-  const onPress = () => {
-    console.log('Pressed');
-  };
+  const maxTemp = formatTemperature(dailyWeather.maxtemp_c);
+  const minTemp = formatTemperature(dailyWeather.mintemp_c);
+
+  const realFeel = `${currentWeather.feelslike_c}°`;
 
   return (
-    <Pressable onPress={onPress}>
-      <Card
-        alignItems="center"
-        flexDirection="row"
-        size="md"
-        variant="elevated"
-        m="$3"
-        justifyContent="space-between"
-        height={80}>
-        <Heading mb="$1" size="sm">
-          {location.name}, {location.country}
-        </Heading>
-        <Box alignItems="center" flexDirection="row">
-          <Box mr="$3">
-            <WeatherIcon icon={weather.condition.icon} size="s" />
-          </Box>
-          <Box alignItems="center" flexDirection="column">
-            <Text bold size="lg">
-              {currentTemp}
-            </Text>
-            <Text size="xs">
-              Fells Like: <Text bold>{realFeel}</Text>
-            </Text>
-          </Box>
+    <Card
+      alignItems="flex-start"
+      flexDirection="column"
+      size="md"
+      variant="elevated">
+      <Box width="100%" flexDirection="row" justifyContent="space-between">
+        <Box flexDirection="column">
+          <Heading mb="$1" size="md">
+            {location.name}, {location.country}
+          </Heading>
+          <Heading mb="$1" size="3xl">
+            {currentTemp}
+          </Heading>
         </Box>
-      </Card>
-    </Pressable>
+        <Box alignItems="center" justifyContent="center">
+          <WeatherIcon icon={currentWeather.condition.icon} size="l" />
+        </Box>
+      </Box>
+      <Box alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="column">
+          <Text size="xs">
+            <Text bold>
+              {maxTemp}/{minTemp}
+            </Text>{' '}
+            Fells Like: <Text bold>{realFeel}</Text>
+          </Text>
+        </Box>
+      </Box>
+    </Card>
   );
 };
 

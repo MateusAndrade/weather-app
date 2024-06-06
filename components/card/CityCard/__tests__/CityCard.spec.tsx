@@ -10,7 +10,12 @@ describe('#cityCard', () => {
   it('render city name', () => {
     const { getByText } = render(
       <ThemeProvider>
-        <CityCard location={mocks.location} weather={mocks.weather} />,
+        <CityCard
+          dailyWeather={mocks.daily}
+          location={mocks.location}
+          currentWeather={mocks.weather}
+        />
+        ,
       </ThemeProvider>,
     );
 
@@ -20,7 +25,11 @@ describe('#cityCard', () => {
   it('render country name', () => {
     const { getByText } = render(
       <ThemeProvider>
-        <CityCard location={mocks.location} weather={mocks.weather} />
+        <CityCard
+          dailyWeather={mocks.daily}
+          location={mocks.location}
+          currentWeather={mocks.weather}
+        />
       </ThemeProvider>,
     );
     expect(getByText(/Germany/)).toBeDefined();
