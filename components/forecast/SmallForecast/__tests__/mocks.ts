@@ -1,0 +1,42 @@
+import { Hour } from "../../../../src/api/types";
+
+export const forecast: Hour = {
+    "time_epoch": 1717628400,
+    "time": "2024-06-06 10:00",
+    "temp_c": 10.9,
+    "temp_f": 51.7,
+    "is_day": 0,
+    "condition": {
+        "text": "Partly Cloudy ",
+        "icon": "//cdn.weatherapi.com/weather/64x64/night/116.png",
+        "code": 1003
+    },
+    "wind_mph": 5.4,
+    "wind_kph": 8.6,
+    "wind_degree": 271,
+    "wind_dir": "W",
+    "pressure_mb": 1016.0,
+    "pressure_in": 30.01,
+    "precip_mm": 0.0,
+    "precip_in": 0.0,
+    "snow_cm": 0.0,
+    "humidity": 74,
+    "cloud": 49,
+    "feelslike_c": 10.0,
+    "feelslike_f": 50.0,
+    "windchill_c": 10.0,
+    "windchill_f": 50.0,
+    "heatindex_c": 10.9,
+    "heatindex_f": 51.7,
+    "dewpoint_c": 6.5,
+    "dewpoint_f": 43.6,
+    "will_it_rain": 0,
+    "chance_of_rain": 0,
+    "will_it_snow": 0,
+    "chance_of_snow": 0,
+    "vis_km": 10.0,
+    "vis_miles": 6.0,
+    "gust_mph": 8.0,
+    "gust_kph": 12.9,
+    "uv": 1.0
+}
