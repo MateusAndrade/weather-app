@@ -61,7 +61,7 @@ const CityCard = ({
       variant="elevated">
       <Box width="100%" flexDirection="row" justifyContent="space-between">
         <Box flexDirection="column">
-          <Heading mb="$1" size="md">
+          <Heading mb="$1" size="md" maxWidth={200} numberOfLines={2}>
             {location.name}, {location.country}
           </Heading>
           <Heading mb="$1" size="3xl">
