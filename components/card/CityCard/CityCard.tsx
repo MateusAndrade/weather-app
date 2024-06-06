@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
+import { Animated, Easing } from 'react-native';
 import { Box, Card, Heading, Text } from '@gluestack-ui/themed';
 
 import { WeatherIcon } from '../../icon/WeatherIcon/WeatherIcon';
 
 import { formatTemperature } from '../../../src/utils';
 import { Day, Current, Location } from '../../../src/api/types';
+import styles from './styles';
 
 export interface CityCardProps {
   location: Location;
@@ -18,12 +20,38 @@ const CityCard = ({
   dailyWeather,
   location,
 }: CityCardProps) => {
+  const iconAnimation = useRef(new Animated.Value(0)).current;
+
   const currentTemp = formatTemperature(currentWeather.feelslike_c);
 
   const maxTemp = formatTemperature(dailyWeather.maxtemp_c);
   const minTemp = formatTemperature(dailyWeather.mintemp_c);
 
-  const realFeel = `${currentWeather.feelslike_c}°`;
+  const realFeel = formatTemperature(currentWeather.feelslike_c);
+
+  const condition = dailyWeather.condition.text;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(iconAnimation, {
+          toValue: 5,
+          duration: 500,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(iconAnimation, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+      {
+        iterations: -1,
+      },
+    ).start();
+  }, [iconAnimation]);
 
   return (
     <Card
@@ -39,10 +67,22 @@ const CityCard = ({
           <Heading mb="$1" size="3xl">
             {currentTemp}
           </Heading>
+          <Box mb="$5">
+            <Text>{condition}</Text>
+          </Box>
         </Box>
-        <Box alignItems="center" justifyContent="center">
+        <Animated.View
+          style={[
+            styles.iconContainer,
+            {
+              transform: [
+                { translateY: iconAnimation },
+                { translateX: iconAnimation },
+              ],
+            },
+          ]}>
           <WeatherIcon icon={currentWeather.condition.icon} size="l" />
-        </Box>
+        </Animated.View>
       </Box>
       <Box alignItems="center" flexDirection="row">
         <Box alignItems="center" flexDirection="column">
