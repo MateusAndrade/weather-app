@@ -3,12 +3,13 @@ import { Image } from 'react-native';
 
 interface WeatherIconProps {
   icon: string;
-  size: 's' | 'm';
+  size: 's' | 'm' | 'l';
 }
 
 const iconSizes = {
   s: 32,
   m: 64,
+  l: 86,
 };
 
 const WeatherIcon = ({ icon, size = 'm' }: WeatherIconProps) => {
