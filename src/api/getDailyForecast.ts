@@ -14,7 +14,7 @@ interface DailyForecastReponse {
 
 
 const getDailyForecast = ({ cityName, days }: DailyForecastQueryParams) => request<DailyForecastQueryParams, DailyForecastReponse>({
-    url: `/current.json`,
+    url: `/forecast.json`,
     params: {
         q: cityName,
         days,
