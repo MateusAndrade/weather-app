@@ -1,79 +1,57 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Weather App
 
-# Getting Started
-
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
+# Installing dependencies
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+npm i
 ```
 
-## Step 2: Start your Application
+### Start bundler
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+```bash
+npm run start
+```
 
-### For Android
+### Running on Android
 
 ```bash
 # using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+You can also run it using Android Studio. I'm not sure if it works on iOS, as I don't have a macOS to test it. :sweet_smile:
 
-```bash
-# using npm
-npm run ios
+## Architecture
 
-# OR using Yarn
-yarn ios
-```
+I decided to follow this separation for the project, although I think there's a lot of space for improvement. Like separating the API folder into a proper module, as it will allow easier maintance and usage.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+The project is organized as follows:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- `components/`: Contains all the reusable components.
+- `assets/`: Contains all static files like images, etc.
+- `__tests__/`: Contains helpers files for tests.
+- `src/`: This is where all the source code of the application resides.
+  - `api/`: Contains all query functions, as well as the react-query configuration.
+  - `screens/`: Contains all the screen components, which are the main views users will see.
+  - `utils/`: Contains utility functions and constants.
+  - `navigation/`: Contains the navigation configuration as well as the navigation component and the provider.
 
-## Step 3: Modifying your App
+I decided to split the components folder into a separate "module", as If we decided to use this component in another project, it would be easier to extract it and publish it as a package. Also, it easier to connect it to a Storybook project or even Snack without having any dependency to the project. Althought, there's a coupling between the components and the utils folder, and the API as I'm using some functions and types from this modules. Ideally, this coupling should be removed and the components should be self-contained.
 
-Now that you have successfully run the app, let's modify it.
+## CI/CD
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+I also added a small pipeline to run lint and tests on each PR. It's using GitHub Actions, and you can check the workflow file [here](.github/workflows/main.yml).
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## Styles
 
-## Congratulations! :tada:
+I decided to use "@gluestack-ui" to style this, as It was something I wanted to try for a while. Instead of creating my own theme or something similar, I decided to the the default config provided by the library but isolating it making it easier to change in the future as it can be seen in the [theme file](components/theme/theme.ts).
 
-You've successfully run and modified your React Native App. :partying_face:
+## Data-Fetching
 
-### Now what?
+I decided to use React-Query to handle the data fetching, as it's a library I'm familiar with and I think it's a good fit for this project. I think for such a tiny context this is kind of a overkill, but as I come from projects using Relay, and Apollo I decided to use by it's similarity to those libraries, as well as the caching and refetching capabilities.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## Final thoughts
 
-# Troubleshooting
+Something I'm missing and I believe would be a great addition, is to support the user locale to show the temperate according to it. As of today, it's always showing in Celcius(sorry if you are testing from the 🇺🇸). I also think it would be much better to use a shimmer or something similar instead of a AcitivityIndicatior while we load the city page.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+![Demo](https://raw.githubusercontent.com/username/repo/branch/path_to_video.gif)
