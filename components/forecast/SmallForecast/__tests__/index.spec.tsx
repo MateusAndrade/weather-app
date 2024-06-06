@@ -24,6 +24,6 @@ describe('#smallForecast', () => {
       </ThemeProvider>,
     );
 
-    expect(getByText(/20°/)).toBeDefined();
+    expect(getByText(/10.9°/)).toBeDefined();
   });
 });
