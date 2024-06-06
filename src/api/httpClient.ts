@@ -1,18 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios"
 
-const BASE_URL = 'https://api.weatherapi.com/v1'
-// @todo: move to .env file
-const API_KEY = 'b6f18f62d11948e2acb145634240406'
-
-
 const axiosClient = axios.create({
-    baseURL: BASE_URL
+    baseURL: process.env.API_URL
 })
 
 const request = <T, R>(options: AxiosRequestConfig<T>) => {
     const params = {
         ...options.params,
-        key: API_KEY,
+        key: process.env.API_KEY,
     }
 
     return axiosClient<R>({ ...options, params }).then((response) => response.data)
